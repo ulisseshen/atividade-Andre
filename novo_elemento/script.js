@@ -1,46 +1,70 @@
-var elem = window.document.getElementById("filha1");
+var buttonCreate = window.document.getElementById("filha1");
 
 var principal = window.document.getElementById("pai");
 
-var clicadas = 1,
-    divs = 1,
-    posi = 85;
+var clickCount = 1;
+const MAX_CLICKS = 9;
 
-elem.onclick = faz;
+buttonCreate.onclick = onClickCreateDiv;
+
+const fibonacci = [];
+
+function nextFibonacci() {
+    const len = fibonacci.length;
+    if (len < 2) {
+        fibonacci.push(1);
+        return 1;
+    }
+    const next = fibonacci[len - 1] + fibonacci[len - 2];
+    fibonacci.push(next);
+    return next;
+}
 
 
 
-function faz() {
+function onClickCreateDiv() {
 
-    if (clicadas > 6) {
+    if (clickCount > MAX_CLICKS) {
 
-        elem.innerHTML = "Chega de divis";
+        buttonCreate.innerText = "Chegamos ao máximo";
 
     } else {
 
-        elem.innerHTML = clicadas + "º clique";
+        buttonCreate.innerText = clickCount + "º clique";
 
-        elem.onmouseover = faz3;
+        buttonCreate.onmouseover = updateMouseOver;
 
-        novaDiv();
+        generateNewFibonacciRow();
 
     }
 
-    clicadas = clicadas + 1;
+    clickCount = clickCount + 1;
 
 }
 
 
 
-function faz2() {
+function checkIfIsFinished() {
+    if (clickCount > MAX_CLICKS) {
+        buttonCreate.innerText = "Não é possivel criar mais divs";
+    } else {
+        buttonCreate.innerText = "Clique para continuar";
+    }
+}
 
-    if (clicadas > 6) {
 
-        elem.innerHTML = "Não é possivel criar mais divs";
+
+function updateMouseOver() {
+
+    if (clickCount > MAX_CLICKS) {
+
+        buttonCreate.innerText = "Quantidade de espaço esgotada";
 
     } else {
 
-        elem.innerHTML = "Coloque o cursor para criar outra";
+        buttonCreate.innerText = "Aperte para criar";
+
+        buttonCreate.onmouseout = checkIfIsFinished;
 
     }
 
@@ -48,68 +72,41 @@ function faz2() {
 
 
 
-function faz3() {
+function generateNewFibonacciRow() {
 
-    if (clicadas > 6) {
 
-        elem.innerHTML = "Quantidade de espaço esgotada";
 
-    } else {
+    const next = nextFibonacci()
 
-        elem.innerHTML = "Aperte para criar";
+    const row = document.createElement('div');
+    row.style.display = 'flex';
+    row.style.gap = '4px';
 
-        elem.onmouseout = faz2;
+    for (let i = 0; i < next; i++) {
+        var novo = document.createElement("div");
+        var textoNovo = document.createTextNode(next);
+        novo.appendChild(textoNovo);
+        novo.style.backgroundColor = "yellow";
 
+        novo.style.width = "50px";
+
+        novo.style.height = "50px";
+
+        novo.style.lineHeight = "50px";
+
+        novo.style.left = "100px";
+
+
+        novo.style.marginTop = "10px";
+
+
+
+        novo.style.textAlign = "center";
+
+        novo.style.fontSize = "16px";
+        row.appendChild(novo);
     }
 
-}
-
-
-
-function novaDiv() {
-
-    var novo = document.createElement("div");
-
-    var textoNovo = document.createTextNode("clique aqui");
-
-    novo.appendChild(textoNovo);
-
-    novo.style.backgroundColor = "yellow";
-
-    novo.style.width = "300px";
-
-    novo.style.height = "50px";
-
-    novo.style.lineHeight = "50px";
-
-    novo.style.left = "100px";
-
-    if (divs == 1) {
-
-        novo.style.marginTop = posi + "px";
-
-    } else {
-
-        posi = posi + 55;
-
-        novo.style.marginTop = posi + "px";
-
-    }
-
-    novo.style.textAlign = "center";
-
-    novo.style.fontSize = "20px";
-
-    novo.style.position = "absolute";
-
-
-
-    divs = divs + 1;
-
-
-
-    novo.setAttribute('id', "filha" + divs);
-
-    pai.insertBefore(novo, "filha".nextSibling);
+    pai.insertBefore(row, "filha".nextSibling);
 
 }
