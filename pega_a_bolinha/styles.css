@@ -28,11 +28,11 @@
     text-align: center;
     position: relative;
     font-size: 20px;
-    background-image: url('/images/board.jpg');
+    background-image: url('./images/board.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     user-select: none;
-    cursor: url('/images/cursor.png') 5 35, auto;
+    cursor: url('./images/cursor.png') 5 35, auto;
     z-index: 1;
 
 }
@@ -45,7 +45,7 @@
     position: absolute;
     border-radius: 50px 50px 50px 50px;
     user-select: none;
-    background-image: url('/images/ball.png');
+    background-image: url('./images/ball.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     transition-property: left, top;
