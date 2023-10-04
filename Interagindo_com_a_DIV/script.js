@@ -30,37 +30,14 @@ function myMove() {
     } else {
         elem.style.top = "175px";
         elem.style.left = "175px";
-        setTimeout(function () {
-            elem.style.borderRadius = "5px 50px 5px 50px";
-        }, 1000);
-        setTimeout(function () {
-            elem.style.borderRadius = "10px 50px 10px 50px";
-        }, 1500);
-        setTimeout(function () {
-            elem.style.borderRadius = "15px 50px 15px 50px";
-        }, 2000);
-        setTimeout(function () {
-            elem.style.borderRadius = "20px 50px 20px 50px";
-        }, 2500);
+        const loop = 10;
+        for (let i = 0; i < loop; i++) {
+            setTimeout(function () {
+                const newRadius = (i + 1) * 5;
+                elem.style.borderRadius = ` ${newRadius}px 50px ${newRadius}px 50px`;
+            }, 100 + (i * 100));
 
-        setTimeout(function () {
-            elem.style.borderRadius = "25px 50px 25px 50px";
-        }, 3000);
-        setTimeout(function () {
-            elem.style.borderRadius = "30px 50px 30px 50px";
-        }, 3500);
-        setTimeout(function () {
-            elem.style.borderRadius = "35px 50px 35px 50px";
-        }, 4000);
-        setTimeout(function () {
-            elem.style.borderRadius = "40px 50px 40px 50px";
-        }, 4500);
-        setTimeout(function () {
-            elem.style.borderRadius = "45px 50px 45px 50px";
-        }, 5000);
-        setTimeout(function () {
-            elem.style.borderRadius = "50px 50px 50px 50px";
-        }, 5500);
+        }
         contaclique = 0;
 
     }
