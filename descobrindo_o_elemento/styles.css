@@ -1,0 +1,27 @@
+#conteudoPrincipal {
+
+    top: 70px;
+
+    left: 70px;
+
+    width: 120px;
+
+    height: 120px;
+
+    position: absolute;
+
+    background: yellow;
+
+    border-radius: 50px 50px 50px 50px;
+
+}
+
+
+
+#clickNoBotao {
+
+    margin-top: 50px;
+
+    margin-left: 30px;
+
+}
